@@ -1,0 +1,100 @@
+﻿<Window x:Class="RevitCollisionDetection.View.CollisionDetectionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+        Title="碰撞检测" Height="550" Width="665"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- 主要内容区域 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 按钮区域 -->
+        </Grid.RowDefinitions>
+
+        <!-- 主内容区域 -->
+        <StackPanel Grid.Row="0">
+            <!-- 类别选择 -->
+            <StackPanel Orientation="Horizontal" 
+                      HorizontalAlignment="Center"
+                      Margin="0 10">
+                <StackPanel Margin="10">
+                    <TextBlock Text="选择类别 1:" FontSize="14"/>
+                    <ListBox x:Name="ListBox1" 
+                           ItemsSource="{Binding Categories}"
+                           SelectionMode="Multiple"
+                           SelectionChanged="ListBox1_SelectionChanged"
+                           MaxHeight="250" 
+                           Width="250"
+                           FontSize="14"
+                           ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <TextBlock Text="选择类别 2:" FontSize="14"/>
+                    <ListBox x:Name="ListBox2" 
+                           ItemsSource="{Binding Categories}"
+                           SelectionMode="Multiple"
+                           SelectionChanged="ListBox2_SelectionChanged"
+                           MaxHeight="250" 
+                           Width="250"
+                           FontSize="14"
+                           ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- 碰撞类型设置 -->
+            <StackPanel HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Margin="0 20">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="硬碰撞" 
+                               IsChecked="{Binding IsHardCollision}"
+                               FontSize="16"
+                               Margin="0 0 20 0"/>
+                    <RadioButton Content="软碰撞" 
+                               IsChecked="{Binding IsSoftCollision}"
+                               FontSize="16"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                          HorizontalAlignment="Center"
+                          Visibility="{Binding IsSoftCollision, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          Margin="0 10">
+                    <TextBlock Text="间距:" 
+                             FontSize="14"
+                             VerticalAlignment="Center"
+                             Margin="0 0 10 0"/>
+                    <TextBox Text="{Binding SoftCollisionDistance}" 
+                           Width="80"
+                           Height="28"
+                           FontSize="14"
+                           VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
+                    <TextBlock Text="选择标高:" FontSize="14" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                    <ComboBox x:Name="LevelComboBox"
+              ItemsSource="{Binding Levels}" 
+              SelectedItem="{Binding SelectedLevel}"
+              Width="250"
+              FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- 底部按钮 -->
+        <Button Grid.Row="1" 
+              Content="检测" 
+              Command="{Binding StartDetectionCommand}"
+              Click="CloseWindow"
+              FontSize="16"
+              Width="120"
+              Height="35"
+              Margin="0 10"
+              HorizontalAlignment="Center"/>
+    </Grid>
+</Window>
