@@ -15,5 +15,3 @@ F:\Projects\C++\ClassLibrary1\ClassLibrary1\obj\Debug\RevitCollisionDetection.cs
 F:\Projects\C++\ClassLibrary1\ClassLibrary1\obj\Debug\RevitCollisionDetection.csproj.CopyComplete
 F:\Projects\C++\ClassLibrary1\ClassLibrary1\obj\Debug\ClassLibrary1.dll
 F:\Projects\C++\ClassLibrary1\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
-F:\Projects\C++\ClassLibrary1\ClassLibrary1\obj\Debug\View\ProgressView.baml
-F:\Projects\C++\ClassLibrary1\ClassLibrary1\obj\Debug\View\ProgressView.g.cs
